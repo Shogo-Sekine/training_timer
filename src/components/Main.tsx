@@ -1,5 +1,4 @@
 import React from 'react';
-import { Component } from 'react';
 import {
   View,
   Text,
@@ -9,20 +8,20 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-type Props = any;
-export default class Main extends Component<Props> {
-  _onPressButton() {
-    // this.props.changeTimer(true);
+type Props = {
+  changeTimer: (b: boolean) => void
+}
+export default function Main(props :Props) {
+  const _onPressButton = () => {
+    props.changeTimer(true);
   }
-  render() {
-    return (
-      <View>
-        <TouchableOpacity onPress={this._onPressButton} style={styles.button}>
-          <Text>start</Text>
-        </TouchableOpacity>
-      </View>
-    )
-  }
+  return (
+    <View>
+      <TouchableOpacity onPress={_onPressButton} style={styles.button}>
+        <Text>start</Text>
+      </TouchableOpacity>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

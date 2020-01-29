@@ -1,5 +1,5 @@
 import React from 'react'
-import { Component } from 'react';
+import { useState } from 'react';
 import Main from './components/Main';
 import CountDownTimer from './components/CountDownTimer';
 import {
@@ -16,32 +16,26 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export default class App extends Component {
-  state = {
-    onTimer: false,
-  }
-  changeTimer(b: boolean) {
-    this.setState({onTimer: b})
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-        <Main chengeTimer={this.changeTimer.bind(this)}/>
-        {this.state.onTimer && (
-          <CountDownTimer/>
-        )}
-      </View>
-    );
-  }
+export default function App() {
+  const [onTimer, setTimer] = useState(false);
+  const changeTimer = (b: boolean) => setTimer(b);
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>
+        Welcome to React Native!
+      </Text>
+      <Text style={styles.instructions}>
+        To get started, edit App.js
+      </Text>
+      <Text style={styles.instructions}>
+        {instructions}
+      </Text>
+      <Main changeTimer={changeTimer}/>
+      {onTimer && (
+        <CountDownTimer/>
+      )}
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
