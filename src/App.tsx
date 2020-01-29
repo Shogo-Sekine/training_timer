@@ -1,6 +1,7 @@
 import React from 'react'
 import { Component } from 'react';
 import Main from './components/Main';
+import CountDownTimer from './components/CountDownTimer';
 import {
   Platform,
   StyleSheet,
@@ -15,8 +16,13 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+  state = {
+    onTimer: false,
+  }
+  changeTimer(b: boolean) {
+    this.setState({onTimer: b})
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -29,7 +35,10 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>
           {instructions}
         </Text>
-        <Main/>
+        <Main chengeTimer={this.changeTimer.bind(this)}/>
+        {this.state.onTimer && (
+          <CountDownTimer/>
+        )}
       </View>
     );
   }

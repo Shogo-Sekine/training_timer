@@ -9,18 +9,16 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default class Main extends Component {
+type Props = any;
+export default class Main extends Component<Props> {
   _onPressButton() {
-    Alert.alert('ボタンを押しました！')
+    // this.props.changeTimer(true);
   }
   render() {
     return (
       <View>
         <TouchableOpacity onPress={this._onPressButton} style={styles.button}>
           <Text>start</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this._onPressButton} style={styles.button}>
-          <Text>end</Text>
         </TouchableOpacity>
       </View>
     )
