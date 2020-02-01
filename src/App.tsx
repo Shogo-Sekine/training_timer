@@ -14,12 +14,14 @@ import {
   FlatList,
   StyleSheet,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 type Item = {
   id: number;
   text: string;
 }
 type ItemList = Item[] | [];
+Icon.loadFont();
 
 export default function App() {
   const [onTimer, setTimer] = useState<boolean>(false);
@@ -53,7 +55,9 @@ export default function App() {
         </View>
       </View>
       <Footer> 
-        <Text> footer </Text>
+        <Icon name="home" size={50}/>
+        <Icon name="plus" size={50}/>
+        <Icon name="arrow-circle-right" size={50}/>
       </Footer>
     </View>
   );
