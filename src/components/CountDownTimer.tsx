@@ -5,11 +5,14 @@ import {
   Alert,
 } from 'react-native';
 
-export default function CountDownTimer() {
+type Props = {
+  changeTimer: (b: boolean) => void
+}
+export default function CountDownTimer(props: Props) {
   return (
     <CountDown
       until={10}
-      onFinish={() => Alert.alert('finished')}
+      onFinish={() => props.changeTimer(false)}
       onPress={() => Alert.alert('hello')}
       timeToShow={['S']}
       size={50}

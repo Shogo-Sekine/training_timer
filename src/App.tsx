@@ -1,39 +1,53 @@
 import React from 'react'
 import { useState } from 'react';
-import Main from './components/Main';
+import TimerButton from './components/TimerButton';
+import InputForm from './components/InputForm';
+import RowItem from './components/RowItem';
 import CountDownTimer from './components/CountDownTimer';
 import {
-  Platform,
-  StyleSheet,
   Text,
-  View
+  View,
+  FlatList,
+  StyleSheet,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+type Item = {
+  id: number;
+  text: string;
+}
+type ItemList = Item[] | [];
 
 export default function App() {
-  const [onTimer, setTimer] = useState(false);
+  const [onTimer, setTimer] = useState<boolean>(false);
+  const [itemList, setItemList] = useState<ItemList>([]);
+
   const changeTimer = (b: boolean) => setTimer(b);
+  const onPressed = (text: string) => {
+    const l = ([] as Item[]).concat(itemList);
+    const num = l.length;
+    l.push({
+      id: num,
+      text: text,
+    })
+    setItemList(l);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.welcome}>
-        Welcome to React Native!
-      </Text>
-      <Text style={styles.instructions}>
-        To get started, edit App.js
-      </Text>
-      <Text style={styles.instructions}>
-        {instructions}
-      </Text>
-      <Main changeTimer={changeTimer}/>
-      {onTimer && (
-        <CountDownTimer/>
-      )}
+      <View style={styles.main}>
+        <TimerButton changeTimer={changeTimer}/>
+        {onTimer && (
+          <CountDownTimer changeTimer={changeTimer}/>
+        )}
+        <InputForm onPressed={onPressed}/>
+        <View style={styles.todoListContainer}>
+          <FlatList
+            style={styles.todoList}
+            data={itemList}
+            renderItem={({ item }) => <RowItem {...item} />}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -44,15 +58,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+    paddingTop: 40,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  main: {
+    flex: 1,
+    maxWidth: 400,
+    alignItems: 'center',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  todoListContainer: {
+    flexDirection: 'row',
+    flex: 1,
   },
+  todoList: {
+    paddingLeft: 10,
+    paddingRight: 10,
+  }
 });

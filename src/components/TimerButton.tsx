@@ -2,8 +2,6 @@ import React from 'react';
 import {
   View,
   Text,
-  Button,
-  Alert,
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
@@ -11,7 +9,7 @@ import {
 type Props = {
   changeTimer: (b: boolean) => void
 }
-export default function Main(props :Props) {
+export default function TimerButton(props :Props) {
   const _onPressButton = () => {
     props.changeTimer(true);
   }
