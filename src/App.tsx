@@ -1,6 +1,7 @@
 import React from 'react'
 import { Component } from 'react';
 import Main from './components/Main';
+import Footer from './Footer';
 import CountDownTimer from './components/CountDownTimer';
 import {
   Platform,
@@ -39,6 +40,7 @@ export default class App extends Component {
         {this.state.onTimer && (
           <CountDownTimer/>
         )}
+        <Footer/>
       </View>
     );
   }
