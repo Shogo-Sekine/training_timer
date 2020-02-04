@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
-import TimerButton from './components/TimerButton';
-import InputForm from './components/InputForm';
-import RowItem from './components/RowItem';
-import CountDownTimer from './components/CountDownTimer';
+import RegisterFormView from './components/views/RegisterFormView';
+import TimerView from './components/views/TimerView';
+import SettingView from './components/views/SettingView';
 import Top from './components/views/Top'
 import Footer from './Footer';
 import {
@@ -51,11 +50,11 @@ export default function App() {
       case Tab.Home:
         return <Top text='Home' />;
       case Tab.Plus:
-        return <Top text='Plus' />
+        return <RegisterFormView text='Plus' />
       case Tab.Timer:
-        return <Top text='Timer' />
+        return <TimerView text='Timer' />
       case Tab.Setting:
-        return <Top text='Setting' />
+        return <SettingView text='Setting' />
     }
   }
 

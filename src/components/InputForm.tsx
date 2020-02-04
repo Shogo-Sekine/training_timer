@@ -17,10 +17,11 @@ export default function InputForm(props: Props) {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.textInput} onChangeText={text => setText(text)}/>
+      <Text style={styles.buttonText}>追加</Text>
+      {/* <TextInput style={styles.textInput} onChangeText={text => setText(text)}/>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
