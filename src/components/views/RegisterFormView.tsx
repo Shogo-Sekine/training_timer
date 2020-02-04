@@ -31,6 +31,11 @@ export default function RegisterFormView(props: Props) {
     <View style={styles.container}>
       {/* <Text style={styles.text}>{props.text}</Text> */}
       <InputForm onPressed={onPressed}/>
+      <InputForm onPressed={onPressed}/>
+      <InputForm onPressed={onPressed}/>
+      <InputForm onPressed={onPressed}/>
+      <InputForm onPressed={onPressed}/>
+      <InputForm onPressed={onPressed}/>
     </View>
   )
 }
@@ -38,10 +43,10 @@ export default function RegisterFormView(props: Props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 0,
   },
   text: {
-    flex: 5,
+    flex: 0,
     alignSelf: 'center',
     justifyContent: 'center',
   }

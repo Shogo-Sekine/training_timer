@@ -18,18 +18,21 @@ export default function InputForm(props: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.buttonText}>追加</Text>
-      {/* <TextInput style={styles.textInput} onChangeText={text => setText(text)}/>
+      <TextInput style={styles.textInput} onChangeText={text => setText(text)}/>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
-      </TouchableOpacity> */}
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
+    flex: 1,
     padding: 20,
+    flexDirection: 'row',
+    height: 10,
+    width: '100%',
   },
   textInput: {
     flex: 3,
