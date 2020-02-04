@@ -1,22 +1,65 @@
 import React from 'react'
-import { Component } from 'react';
 import {
   StyleSheet,
   Text,
 } from 'react-native';
 import {
   Container,
-  Footer
+  Footer,
+  FooterTab,
+  Button,
 } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-type Props = {};
-export default class App extends Component<Props> {
+type Props = {
+  tab: Tab,
+  onPressed: (t: Tab) => void
+};
+enum Tab {
+  Home,
+  Plus,
+  Timer,
+  Setting
+}
+export default function VFooter(props: Props) {
+  const {
+    tab,
+    onPressed
+  } = props;
 
-  render() {
     return (
       <Container style={styles.container}>
-        <Footer style={styles.footer}>
-          <Text> footer </Text>
+        <Footer>
+        <FooterTab>
+          <Button
+            active={tab === Tab.Home}
+            onPress={() => onPressed(Tab.Home)}
+          >
+            <Icon name="home" size={30} />
+            <Text>Home</Text>
+          </Button>
+          <Button
+            active={tab === Tab.Plus}
+            onPress={() => onPressed(Tab.Plus)}
+          >
+            <Icon name="plus" size={30} />
+            <Text>Plus</Text>
+          </Button>
+          <Button
+            active={tab === Tab.Timer}
+            onPress={() => onPressed(Tab.Timer)}
+          >
+            <Icon name="hourglass-start" size={30} />
+            <Text>Timer</Text>
+          </Button>
+          <Button
+            active={tab === Tab.Setting}
+            onPress={() => onPressed(Tab.Setting)}
+          >
+            <Icon name="cog" size={30} />
+            <Text>Setting</Text>
+          </Button>
+        </FooterTab>
         </Footer>
       </Container>
       // <View style={{ flex: 1 }}>
@@ -31,7 +74,6 @@ export default class App extends Component<Props> {
       //   /> */}
       // </View>
     )
-  }
 }
 
 const styles = StyleSheet.create({
@@ -39,8 +81,4 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  footer: {
-    alignItems: "center",
-    justifyContent: "center"
-  }
 });

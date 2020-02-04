@@ -1,13 +1,10 @@
-import React from 'react'
-import { useState } from 'react';
+import React, {useState} from 'react'
 import TimerButton from './components/TimerButton';
 import InputForm from './components/InputForm';
 import RowItem from './components/RowItem';
 import CountDownTimer from './components/CountDownTimer';
-import {
-  Container,
-  Footer
-} from 'native-base';
+import Top from './components/views/Top'
+import Footer from './Footer';
 import {
   Text,
   View,
@@ -21,11 +18,20 @@ type Item = {
   text: string;
 }
 type ItemList = Item[] | [];
+
+enum Tab {
+  Home,
+  Plus,
+  Timer,
+  Setting
+}
+
 Icon.loadFont();
 
 export default function App() {
   const [onTimer, setTimer] = useState<boolean>(false);
   const [itemList, setItemList] = useState<ItemList>([]);
+  const [tab, setTab] = useState<Tab>(Tab.Home);
 
   const changeTimer = (b: boolean) => setTimer(b);
   const onPressed = (text: string) => {
@@ -38,9 +44,25 @@ export default function App() {
     setItemList(l);
   };
 
+  const footerPressed = (tab: Tab) => { setTab(tab); }
+
+  const reserSelectedTab = () => {
+    switch(tab) {
+      case Tab.Home:
+        return <Top text='Home' />;
+      case Tab.Plus:
+        return <Top text='Plus' />
+      case Tab.Timer:
+        return <Top text='Timer' />
+      case Tab.Setting:
+        return <Top text='Setting' />
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.main}>
+      <View style={styles.main}>{reserSelectedTab()}</View>
+      {/* <View style={styles.main}>
         <TimerButton changeTimer={changeTimer}/>
         {onTimer && (
           <CountDownTimer changeTimer={changeTimer}/>
@@ -53,12 +75,8 @@ export default function App() {
             renderItem={({ item }) => <RowItem {...item} />}
           />
         </View>
-      </View>
-      <Footer> 
-        <Icon name="home" size={50}/>
-        <Icon name="plus" size={50}/>
-        <Icon name="arrow-circle-right" size={50}/>
-      </Footer>
+      </View> */}
+      <Footer tab={tab} onPressed={footerPressed}/>
     </View>
   );
 }
@@ -72,7 +90,7 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   main: {
-    flex: 1,
+    flex: 9,
     maxWidth: 400,
     alignItems: 'center',
   },
