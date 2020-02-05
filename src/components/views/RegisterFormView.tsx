@@ -56,12 +56,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   form: {
-    height: 120,
-    marginTop: 100,
+    height: '100%',
     width: '100%',
+    marginTop: 10,
   },
   todoListContainer: {
     flex: 1,
+    height: 1000,
     padding: 0,
   },
   todoList: {
