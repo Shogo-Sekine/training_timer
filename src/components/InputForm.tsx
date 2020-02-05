@@ -27,9 +27,9 @@ export default function InputForm(props: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
+    paddingBottom: 20,
     flexDirection: 'row',
-    height: 150,
+    height: 75,
     width: '100%',
   },
   textInput: {
