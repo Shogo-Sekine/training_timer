@@ -17,7 +17,6 @@ export default function InputForm(props: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.buttonText}>追加</Text>
       <TextInput style={styles.textInput} onChangeText={text => setText(text)}/>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
@@ -31,7 +30,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     flexDirection: 'row',
-    height: 10,
     width: '100%',
   },
   textInput: {
