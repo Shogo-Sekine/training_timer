@@ -8,21 +8,24 @@ import {
 import RowItem from '../RowItem';
 
 type Props = {
-  text: string;
+  menu: string;
+  sec: string;
 }
 type Item = {
   id: string;
-  text: string;
+  menu: string;
+  sec: string;
 }
 type ItemList = Item[] | [];
 export default function RegisterFormView(props: Props) {
   const [itemList, setItemList] = useState<ItemList>([]);
-  const onPressed = (text: string) => {
+  const onPressed = (menu: string, sec: string) => {
     const l = ([] as Item[]).concat(itemList);
     const id_ = String(l.length);
     l.push({
       id: id_,
-      text: text,
+      menu: menu,
+      sec: sec,
     })
     setItemList(l);
     console.log(l);

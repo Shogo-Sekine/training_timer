@@ -6,16 +6,19 @@ import {
 } from 'react-native';
 
 type Props = {
-  text: string;
+  menu: string;
+  sec: string;
 }
 export default function RowItem(props: Props) {
   const {
-    text,
+    menu,
+    sec,
   } = props;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text} >{text}</Text>
+      <Text style={styles.text} >{menu}</Text>
+      <Text style={styles.text} >{sec}</Text>
     </View>
   );
 }

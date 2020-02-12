@@ -9,16 +9,17 @@ import {
 } from 'react-native';
 
 type Props = {
-  onPressed: (text: string) => void
+  onPressed: (menu: string, sec: string) => void
 }
 export default function InputForm(props: Props) {
-  const [text, setText] = useState('');
-  const _onPressed = () => props.onPressed(text);
+  const [menu, setMenu] = useState('');
+  const [sec, setSec] = useState('');
+  const _onPressed = () => props.onPressed(menu, sec);
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.textInput} placeholder="Menu" onChangeText={text => setText(text)}/>
-      <TextInput style={styles.textInput} placeholder="Sec" onChangeText={text => setText(text)}/>
+      <TextInput style={styles.textInput} placeholder="Menu" onChangeText={menu => setMenu(menu)}/>
+      <TextInput style={styles.textInput} placeholder="Sec" onChangeText={sec => setSec(sec)}/>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
       </TouchableOpacity>
