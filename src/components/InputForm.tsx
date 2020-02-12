@@ -18,8 +18,8 @@ export default function InputForm(props: Props) {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.textInput} placeholder="Menu" onChangeText={menu => setMenu(menu)}/>
-      <TextInput style={styles.textInput} placeholder="Sec" onChangeText={sec => setSec(sec)}/>
+      <TextInput style={styles.menuInput} placeholder="Menu" onChangeText={menu => setMenu(menu)}/>
+      <TextInput style={styles.secInput} placeholder="Sec" onChangeText={sec => setSec(sec)}/>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
       </TouchableOpacity>
@@ -34,8 +34,16 @@ const styles = StyleSheet.create({
     height: 75,
     width: '100%',
   },
-  textInput: {
+  menuInput: {
     flex: 3,
+    backgroundColor: '#FFF',
+    marginRight: 5,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#CCC',
+  },
+  secInput: {
+    flex: 1,
     backgroundColor: '#FFF',
     marginRight: 5,
     borderRadius: 3,

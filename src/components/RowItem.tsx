@@ -3,6 +3,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TextInput,
 } from 'react-native';
 
 type Props = {
@@ -17,26 +18,34 @@ export default function RowItem(props: Props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text} >{menu}</Text>
-      <Text style={styles.text} >{sec}</Text>
+      <TextInput editable={false} style={styles.menu} >{menu}</TextInput>
+      <TextInput editable={false} style={styles.sec} >{sec}</TextInput>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 5,
-    paddingRight: 5,
-    marginBottom: 10,
+    width: '100%',
+    backgroundColor: '#F5FCFF',
+    flexDirection: 'row',
     minHeight: 50,
+  },
+  menu: {
+    flex: 3,
+    backgroundColor: '#FFF',
+    marginRight: 5,
+    marginBottom: 5,
     borderRadius: 3,
     borderWidth: 1,
     borderColor: '#CCC',
   },
-  text: {
-    color: '#333',
+  sec: {
+    flex: 2,
+    backgroundColor: '#FFF',
+    marginBottom: 5,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#CCC',
   }
 })
