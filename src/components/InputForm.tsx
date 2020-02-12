@@ -17,7 +17,8 @@ export default function InputForm(props: Props) {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.textInput} onChangeText={text => setText(text)}/>
+      <TextInput style={styles.textInput} placeholder="Menu" onChangeText={text => setText(text)}/>
+      <TextInput style={styles.textInput} placeholder="Sec" onChangeText={text => setText(text)}/>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
       </TouchableOpacity>
@@ -36,6 +37,9 @@ const styles = StyleSheet.create({
     flex: 3,
     backgroundColor: '#FFF',
     marginRight: 5,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#CCC',
   },
   button: {
     flex: 1,
