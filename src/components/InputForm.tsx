@@ -22,7 +22,7 @@ export default function InputForm(props: Props) {
     <View style={styles.container}>
       <TextInput style={styles.menuInput} placeholder="Menu" onChangeText={menu => setMenu(menu)}/>
       <TextInput style={styles.secInput} placeholder="Sec" onChangeText={sec => setSec(sec)}/>
-      <TouchableOpacity disabled={disabled} style={styles.button} onPress={_onPressed}>
+      <TouchableOpacity disabled={disabled} style={disabled ? styles.buttonDisabled : styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
       </TouchableOpacity>
     </View>
@@ -55,6 +55,15 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     backgroundColor: '#008080',
+    marginLeft: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  buttonDisabled: {
+    flex: 1,
+    backgroundColor: '#cccccc',
     marginLeft: 5,
     alignItems: 'center',
     justifyContent: 'center',
