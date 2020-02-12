@@ -35,7 +35,7 @@ export default function RegisterFormView(props: Props) {
     <View style={styles.container}>
       {/* <Text style={styles.text}>{props.text}</Text> */}
       <View style={styles.form}>
-        <InputForm onPressed={onPressed}/>
+        <InputForm onPressed={onPressed} disabled={itemList.length >=5 }/>
         <View style={styles.todoListContainer}>
           <FlatList
             style={styles.todoList}

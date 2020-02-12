@@ -9,18 +9,20 @@ import {
 } from 'react-native';
 
 type Props = {
-  onPressed: (menu: string, sec: string) => void
+  onPressed: (menu: string, sec: string) => void,
+  disabled: boolean
 }
 export default function InputForm(props: Props) {
   const [menu, setMenu] = useState('');
   const [sec, setSec] = useState('');
   const _onPressed = () => props.onPressed(menu, sec);
+  const disabled: boolean = props.disabled
 
   return (
     <View style={styles.container}>
       <TextInput style={styles.menuInput} placeholder="Menu" onChangeText={menu => setMenu(menu)}/>
       <TextInput style={styles.secInput} placeholder="Sec" onChangeText={sec => setSec(sec)}/>
-      <TouchableOpacity style={styles.button} onPress={_onPressed}>
+      <TouchableOpacity disabled={disabled} style={styles.button} onPress={_onPressed}>
         <Text style={styles.buttonText}>追加</Text>
       </TouchableOpacity>
     </View>
