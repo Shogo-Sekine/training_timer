@@ -8,8 +8,7 @@ import {
 import RowItem from '../RowItem';
 
 type Props = {
-  menu: string;
-  sec: string;
+  text: string;
 }
 type Item = {
   id: string;
@@ -30,17 +29,21 @@ export default function RegisterFormView(props: Props) {
     setItemList(l);
     console.log(l);
   };
+  const onDeletePressed = (id: string) => {
+    const deleted = itemList.filter((item: Item) => item.id !== id);
+    setItemList(deleted);
+  }
+
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}>{props.text}</Text> */}
       <View style={styles.form}>
         <InputForm onPressed={onPressed} disabled={itemList.length >=5 }/>
         <View style={styles.todoListContainer}>
           <FlatList
             style={styles.todoList}
             data={itemList}
-            renderItem={({ item }) => <RowItem {...item} />}
+            renderItem={({ item }) => <RowItem onDeletePressed={onDeletePressed} {...item} />}
           />
         </View>
       </View>

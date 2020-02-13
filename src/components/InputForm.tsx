@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 
 type Props = {
-  onPressed: (menu: string, sec: string) => void,
-  disabled: boolean
+  onPressed: (menu: string, sec: string) => void;
+  disabled: boolean;
 }
 export default function InputForm(props: Props) {
   const [menu, setMenu] = useState('');
@@ -55,18 +55,18 @@ const styles = StyleSheet.create({
   button: {
     flex: 1,
     backgroundColor: '#008080',
-    marginLeft: 5,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 5,
     paddingTop: 10,
     paddingBottom: 10,
   },
   buttonDisabled: {
     flex: 1,
     backgroundColor: '#cccccc',
-    marginLeft: 5,
     alignItems: 'center',
     justifyContent: 'center',
+    marginLeft: 5,
     paddingTop: 10,
     paddingBottom: 10,
   },
