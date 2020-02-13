@@ -4,6 +4,8 @@ import {
   View,
   FlatList,
   StyleSheet,
+  TouchableOpacity,
+  Text,
 } from 'react-native';
 import RowItem from '../RowItem';
 
@@ -38,7 +40,7 @@ export default function RegisterFormView(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.form}>
-        <InputForm onPressed={onPressed} disabled={itemList.length >=5 }/>
+        <InputForm onPressed={onPressed} disabled={itemList.length >=10 }/>
         <View style={styles.todoListContainer}>
           <FlatList
             style={styles.todoList}
@@ -46,6 +48,9 @@ export default function RegisterFormView(props: Props) {
             renderItem={({ item }) => <RowItem onDeletePressed={onDeletePressed} {...item} />}
           />
         </View>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>登録</Text>
+        </TouchableOpacity>
       </View>
     </View>
   )
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   todoListContainer: {
-    flex: 1,
+    flex: 10,
     height: 1000,
     padding: 0,
   },
@@ -76,5 +81,20 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingLeft: 10,
     paddingRight: 5,
+  },
+  button: {
+    flex: 1,
+    backgroundColor: '#008080',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 15,
+    marginLeft: 5,
+    marginBottom: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  buttonText: {
+    color: '#FFF',
+    fontWeight: '500',
   }
 });

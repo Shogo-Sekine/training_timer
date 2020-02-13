@@ -20,7 +20,6 @@ export default function RowItem(props: Props) {
 
   return (
     <View style={styles.container}>
-      <Text>{props.id}</Text>
       <TextInput editable={false} style={styles.menu} >{menu}</TextInput>
       <TextInput editable={false} style={styles.sec} >{sec}</TextInput>
       <TouchableOpacity style={styles.button} onPress={_onPressed}>
