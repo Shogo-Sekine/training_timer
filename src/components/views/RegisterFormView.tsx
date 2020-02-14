@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import Dialog from "react-native-dialog";
 import RowItem from '../RowItem';
 
 type Props = {
@@ -35,6 +36,28 @@ export default function RegisterFormView(props: Props) {
     const deleted = itemList.filter((item: Item) => item.id !== id);
     setItemList(deleted);
   }
+  const [confirmDialogVisible, setConfirmDialogVisible] = useState(false);
+  const [warningDialogVisible, setWarningDialogVisible] = useState(false);
+
+  const showDialog = () => {
+    if (itemList.length == 0) {
+      setWarningDialogVisible(true);
+    } else {
+      setConfirmDialogVisible(true);
+    }
+  };
+
+  const handleCancel = () => {
+    setConfirmDialogVisible(false);
+  };
+
+  const handleRegister = () => {
+    setConfirmDialogVisible(false);
+  };
+
+  const closeWarningDialog = () => {
+    setWarningDialogVisible(false);
+  };
 
 
   return (
@@ -48,9 +71,24 @@ export default function RegisterFormView(props: Props) {
             renderItem={({ item }) => <RowItem onDeletePressed={onDeletePressed} {...item} />}
           />
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={showDialog}>
           <Text style={styles.buttonText}>登録</Text>
         </TouchableOpacity>
+        <Dialog.Container visible={confirmDialogVisible}>
+          <Dialog.Title>メニュー登録</Dialog.Title>
+          <Dialog.Description>
+            登録してよろしいですか?
+          </Dialog.Description>
+          <Dialog.Button label="キャンセル" onPress={handleCancel} />
+          <Dialog.Button label="登録" onPress={handleRegister} />
+        </Dialog.Container>
+        <Dialog.Container visible={warningDialogVisible}>
+          <Dialog.Title>未追加</Dialog.Title>
+          <Dialog.Description>
+            トレーニングメニューを追加してください
+          </Dialog.Description>
+          <Dialog.Button label="OK" onPress={closeWarningDialog} />
+        </Dialog.Container>
       </View>
     </View>
   )
