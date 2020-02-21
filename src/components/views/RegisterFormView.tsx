@@ -9,6 +9,12 @@ import {
 } from 'react-native';
 import Dialog from "react-native-dialog";
 import RowItem from '../RowItem';
+import { TrainingMenuSchema } from '../../schema/TrainingMenu';
+import { TrainingTableSchema } from '../../schema/TrainingTable';
+import { TrainingMenu } from '../../models/TrainingMenu';
+import { TrainingTable } from '../../models/TrainingTable';
+import Realm from 'realm';
+import uuid from 'uuid';
 
 type Props = {
   text: string;
@@ -22,6 +28,12 @@ type ItemList = Item[] | [];
 export default function RegisterFormView(props: Props) {
   const [itemList, setItemList] = useState<ItemList>([]);
   const onPressed = (menu: string, sec: string) => {
+    console.log(sec);
+    const reg = new RegExp(/^[0-9]+$/);
+    if(menu === '' || !reg.test(sec)) {
+      openWarningDialog()
+      return;
+    }
     const l = ([] as Item[]).concat(itemList);
     const id_ = String(l.length);
     l.push({
@@ -41,7 +53,7 @@ export default function RegisterFormView(props: Props) {
 
   const showDialog = () => {
     if (itemList.length == 0) {
-      setWarningDialogVisible(true);
+      openWarningDialog();
     } else {
       setConfirmDialogVisible(true);
     }
@@ -52,8 +64,43 @@ export default function RegisterFormView(props: Props) {
   };
 
   const handleRegister = () => {
-    setConfirmDialogVisible(false);
-  };
+    Realm.open({schema: [TrainingMenuSchema, TrainingTableSchema]})
+    .then(realm => {
+      // Realmオブジェクトを作成してローカルDBに保存します
+      console.log('Realm called');
+      realm.write(() => {
+        const menus: TrainingMenu[] = [];
+        itemList.forEach((item) => {
+          menus.push(
+            {
+              menuId: item.id,
+              menu: item.menu,
+              sec: Number(item.sec),
+            }
+          );
+        });
+        console.log(menus);
+        const table = realm.create('TrainingTableSchema', {
+          tableId: uuid.v4(),
+          menus,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+        // myCar.miles += 20; // 保存済みの値を更新することもできます
+      });
+  
+      // 'miles > 1000'に該当するCarオブジェクトを検索します
+      const cars = realm.objects('TrainingTable');
+  
+      // 上記の条件に該当するCarオブジェクトは１件です
+      cars.length // => 1
+    });
+  }
+
+
+  const openWarningDialog = () => {
+    setWarningDialogVisible(true);
+  }
 
   const closeWarningDialog = () => {
     setWarningDialogVisible(false);
