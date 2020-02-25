@@ -80,7 +80,7 @@ export default function RegisterFormView(props: Props) {
           );
         });
         console.log(menus);
-        const table = realm.create('TrainingTableSchema', {
+        realm.create('TrainingTable', {
           tableId: uuid.v4(),
           menus,
           createdAt: new Date(),
@@ -88,12 +88,9 @@ export default function RegisterFormView(props: Props) {
         });
         // myCar.miles += 20; // 保存済みの値を更新することもできます
       });
-  
-      // 'miles > 1000'に該当するCarオブジェクトを検索します
+      
+      // Realmからのオブジェクト取得
       const cars = realm.objects('TrainingTable');
-  
-      // 上記の条件に該当するCarオブジェクトは１件です
-      cars.length // => 1
     });
   }
 
